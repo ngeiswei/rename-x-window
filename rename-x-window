@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# Simple script to rename the X window under focus. It takes no
+# arguments, instead it opens a dialog box.
+#
+# Requirements:
+#
+# 1) zenity (tested with 3.28.1)
+
+# Raise error on read if variable is not previously written 
+set -u
+
+# # Debug trace
+# set -x
+
+# X window under focus
+focus_id="$(xdotool getwindowfocus)"
+focus_name="$(xdotool getwindowname "$focus_id")"
+
+# Get new workspace name via zenity
+new_name=$(zenity --entry --title="Rename X window" \
+    --text="Rename X window" --entry-text="$focus_name")
+
+# Overwrite the name of the X window under focus
+xdotool set_window --name "$new_name" "$focus_id"
