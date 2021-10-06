@@ -9,6 +9,7 @@ Requirements
 You need the following installed
 
 1. zenity (tested with 3.28.1)
+2. xdotool
 
 Installation
 ------------
